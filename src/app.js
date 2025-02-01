@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import { handleError } from "./utils/errorHandler.js"
+
 
 const app = express()
 
@@ -17,12 +17,17 @@ app.use(express.static("public"))//to store resources on server
 
 //Routes import 
 import categoryRouter from "./routes/category.routes.js"
+import subCategoryRouter from "./routes/subCategory.routes.js"
+import itemRouter from "./routes/item.routes.js"
 
 //Routes declarration 
 app.use("/category", categoryRouter)
+app.use("/subcategory", subCategoryRouter)
+app.use("/item", itemRouter)
 
 
-
+//Error handling middleware
+import { handleError } from "./utils/errorHandler.js"
 app.use(handleError);
 
 

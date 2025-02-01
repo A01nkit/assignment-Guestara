@@ -1,15 +1,15 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 
 
 const subCategorySchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true,
     },
     image_url: {//from cloudinary
         type: String
-
     },
     description: {
         type: String,
@@ -21,6 +21,18 @@ const subCategorySchema = new mongoose.Schema({
     tax: {
         type: Number
     },
+    taxType: {
+        type: String,
+        //enum: ["GST", "VAT"]
+        default: "GST"
+    },
+    categoryId: {//As foreign key
+        //type: mongoose.Schema.Types.ObjectId,
+       // ref: "category"
+        type: String,
+        required: true,
+        lowercase: true
+    }
     
 });
 

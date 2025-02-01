@@ -35,13 +35,24 @@ export const createCategory = asyncHandler( async (req, res, next) => {
     ApiResponse.send(res, `Category created successfully`, 201, category);  
 });
 
-export const getCategory = asyncHandler( async (req, res, next) => {
+
+export const getCategories = asyncHandler( async (req, res, next) => {
     const category = await Category.find();
     if (!category) {
         throw new ApiError(404, `Category not found`);
     }
     ApiResponse.send(res, `Category fetched successfully`, 200, category);
 });
+
+export const getCategory = asyncHandler( async (req, res, next) => {
+    const { category } = req.params;
+    const categoryExist = await Category.findOne({name: category.toLowerCase()});   
+    if (!categoryExist) {
+        throw new ApiError(404, `${category} Category not found`);
+    }
+    ApiResponse.send(res, `Category fetched successfully`, 200, categoryExist);
+});
+
 
 export const deleteCategory = asyncHandler( async (req, res, next) => {
     const { category } = req.params;
@@ -57,6 +68,7 @@ export const deleteCategory = asyncHandler( async (req, res, next) => {
     await Category.deleteOne({ name: category.toLowerCase() });
     ApiResponse.send(res, `Category deleted successfully`, 200);
 });
+
 
 export const updateCategory = asyncHandler( async (req, res, next) => {
     //get user detail from frontend(form, json, url) if coming from form or json we can extract it from req.body

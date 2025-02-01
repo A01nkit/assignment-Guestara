@@ -1,7 +1,6 @@
 {
   "name": "assignment-guestara",
   "version": "1.0.0",
-  "description": "",
   "type": "module",
   "main": "server.js",
   "scripts": {
@@ -17,5 +16,14 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/A01nkit/assignment-Guestara.git"
+  },
+  "bugs": {
+    "url": "https://github.com/A01nkit/assignment-Guestara/issues"
+  },
+  "homepage": "https://github.com/A01nkit/assignment-Guestara#readme",
+  "description": ""
 }
